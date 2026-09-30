@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafaf9;
+  --surface: #ffffff;
+  --border: #e7e5e4;
+  --text: #1c1917;
+  --muted: #78716c;
+  --accent: #0f766e;
+  --in-range: #15803d;
+  --high: #b45309;
+  --low: #b91c1c;
+  --target-band: rgb(21 128 61 / 0.06);
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-in-range: var(--in-range);
+  --color-high: var(--high);
+  --color-low: var(--low);
+  --color-target-band: var(--target-band);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --radius-sm: 6px;
+  --radius-md: 8px;
+}
+
+body {
+  background: var(--background);
+  color: var(--text);
+}
+
+/* Numbers always use tabular figures so columns of values line up. */
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}
