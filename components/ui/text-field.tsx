@@ -12,9 +12,11 @@ type TextFieldProps = {
   helper?: string;
   error?: string;
   inputMode?: "numeric" | "decimal";
+  /** Hide the label visually but keep it for screen readers (for table cells). */
+  hideLabel?: boolean;
 };
 
-export function TextField({ label, value, onChange, unit, helper, error, inputMode }: TextFieldProps) {
+export function TextField({ label, value, onChange, unit, helper, error, inputMode, hideLabel }: TextFieldProps) {
   const id = useId();
   const helperId = `${id}-helper`;
   const errorId = `${id}-error`;
@@ -22,12 +24,13 @@ export function TextField({ label, value, onChange, unit, helper, error, inputMo
 
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium">
+      <label htmlFor={id} className={clsx("block text-sm font-medium", hideLabel && "sr-only")}>
         {label}
       </label>
       <div
         className={clsx(
-          "mt-2 flex h-10 items-center rounded-md border bg-surface transition-colors duration-150 ease-out focus-within:border-accent",
+          hideLabel ? "mt-0" : "mt-2",
+          "flex h-10 items-center rounded-md border bg-surface transition-colors duration-150 ease-out focus-within:border-accent",
           error ? "border-low" : "border-border",
         )}
       >

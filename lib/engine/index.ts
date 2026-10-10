@@ -3,6 +3,7 @@ export {
   createTwin,
   estimatedAverageGlucose,
   insulinSensitivityIndex,
+  betaCellIndex,
   sensitivityLevel,
   DEFAULTS,
   type SensitivityLevel,

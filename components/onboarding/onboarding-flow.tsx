@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { createTwin } from "@/lib/engine";
 import {
   EMPTY_DRAFT,
   SAMPLE_PATIENT,
@@ -13,7 +12,7 @@ import {
   validateDiabetes,
   type ProfileDraft,
 } from "@/lib/profile-form";
-import { useStoredTwin, type StoredTwin } from "@/lib/twin-store";
+import { buildStoredTwin, useStoredTwin, type StoredTwin } from "@/lib/twin-store";
 import { StepAboutYou } from "./step-about-you";
 import { StepDiabetes } from "./step-diabetes";
 import { StepSummary } from "./step-summary";
@@ -87,12 +86,7 @@ function Flow({ existing, save }: FlowProps) {
       return;
     }
     if (!profile) return;
-    const saved = save({
-      sampleName,
-      profile,
-      params: createTwin(profile),
-      createdAt: new Date().toISOString(),
-    });
+    const saved = save(buildStoredTwin(profile, sampleName));
     if (saved) router.push("/simulator");
     else setSaveFailed(true);
   }
@@ -134,6 +128,7 @@ function Flow({ existing, save }: FlowProps) {
             profile={profile}
             sampleName={sampleName}
             replacesExisting={existing !== null}
+            replacesCalibration={Boolean(existing?.calibratedAt)}
           />
         )}
       </div>

@@ -116,6 +116,14 @@ export function insulinSensitivityIndex(params: TwinParams): number {
   return (params.p3 * params.siMultiplier) / DEFAULTS.p3;
 }
 
+/**
+ * Beta-cell (insulin-releasing) response as a fraction of a healthy adult's
+ * (1 = typical healthy value). Includes the calibration multiplier.
+ */
+export function betaCellIndex(params: TwinParams): number {
+  return (params.gamma * params.betaMultiplier) / DEFAULTS.gamma;
+}
+
 /** Plain-language band for the sensitivity index. */
 export function sensitivityLevel(index: number): SensitivityLevel {
   if (index < SENSITIVITY_BANDS.low) return "Low";

@@ -6,9 +6,10 @@ type StepSummaryProps = {
   profile: Profile;
   sampleName?: string;
   replacesExisting: boolean;
+  replacesCalibration: boolean;
 };
 
-export function StepSummary({ profile, sampleName, replacesExisting }: StepSummaryProps) {
+export function StepSummary({ profile, sampleName, replacesExisting, replacesCalibration }: StepSummaryProps) {
   const twin = createTwin(profile);
   const average = estimatedAverageGlucose(profile.hba1c);
 
@@ -38,6 +39,7 @@ export function StepSummary({ profile, sampleName, replacesExisting }: StepSumma
       <p className="text-sm text-muted">
         Saved only in this browser. Nothing is sent anywhere.
         {replacesExisting && " Creating a new twin replaces the one saved here."}
+        {replacesCalibration && " Its calibration is cleared, so you would calibrate again."}
       </p>
       <p className="rounded-md border border-border px-4 py-3 text-sm">{DISCLAIMER}</p>
     </div>

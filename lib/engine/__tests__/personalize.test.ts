@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  betaCellIndex,
   createTwin,
   estimatedAverageGlucose,
   insulinSensitivityIndex,
@@ -27,5 +28,13 @@ describe("personalisation", () => {
     const twin = createTwin(profile());
     const calibrated = { ...twin, siMultiplier: 2 };
     expect(insulinSensitivityIndex(calibrated)).toBeCloseTo(2 * insulinSensitivityIndex(twin), 10);
+  });
+
+  it("scales beta-cell response with HbA1c and the calibration multiplier", () => {
+    const healthy = createTwin(profile({ hba1c: 5.5 }));
+    const diabetic = createTwin(profile({ hba1c: 8 }));
+    expect(betaCellIndex(healthy)).toBeCloseTo(1, 5);
+    expect(betaCellIndex(diabetic)).toBeLessThan(betaCellIndex(healthy));
+    expect(betaCellIndex({ ...diabetic, betaMultiplier: 1.5 })).toBeCloseTo(1.5 * betaCellIndex(diabetic), 10);
   });
 });

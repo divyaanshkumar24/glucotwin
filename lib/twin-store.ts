@@ -1,6 +1,6 @@
 "use client";
 
-import type { Profile, TwinParams } from "@/lib/engine";
+import { createTwin, type Profile, type TwinParams } from "@/lib/engine";
 import { useLocalStorage } from "@/lib/use-local-storage";
 
 const STORAGE_KEY = "glucotwin.twin.v1";
@@ -12,7 +12,15 @@ export type StoredTwin = {
   profile: Profile;
   params: TwinParams;
   createdAt: string;
+  /** Set once the twin has been calibrated on real readings. */
+  calibratedAt?: string;
+  calibrationReadingCount?: number;
 };
+
+/** A fresh, uncalibrated twin for a profile. */
+export function buildStoredTwin(profile: Profile, sampleName?: string): StoredTwin {
+  return { sampleName, profile, params: createTwin(profile), createdAt: new Date().toISOString() };
+}
 
 function isStoredTwin(value: unknown): value is StoredTwin {
   if (typeof value !== "object" || value === null) return false;

@@ -53,8 +53,18 @@ export function TwinPanel({ twin }: { twin: StoredTwin }) {
           </dd>
         </div>
       </dl>
+      {twin.calibratedAt && (
+        <p className="border-t border-border px-4 py-2.5 text-xs text-muted">
+          Calibrated on {formatDate(twin.calibratedAt)} from{" "}
+          <span className="font-mono">{twin.calibrationReadingCount}</span> glucometer readings.
+        </p>
+      )}
     </section>
   );
+}
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
 }
 
 function Stat({ label, value, unit }: { label: string; value: string; unit: string }) {
