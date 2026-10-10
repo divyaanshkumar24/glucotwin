@@ -7,9 +7,12 @@ const VERDICT_CLASS: Record<Verdict, string> = {
   same: "text-muted",
 };
 
-/** "+12" or "−1.5"; a true minus sign lines up better with the plus in mono type. */
-function signed(value: number, decimals: number): string {
-  const rounded = Number(value.toFixed(decimals));
+/**
+ * "+12" or "−1.5"; a true minus sign lines up better with the plus in mono type. The
+ * difference is taken between the rounded values, so it always agrees with the numbers shown.
+ */
+function signed(from: number, to: number, decimals: number): string {
+  const rounded = Number((Number(to.toFixed(decimals)) - Number(from.toFixed(decimals))).toFixed(decimals));
   if (rounded === 0) return (0).toFixed(decimals);
   return `${rounded > 0 ? "+" : "−"}${Math.abs(rounded).toFixed(decimals)}`;
 }
@@ -36,7 +39,7 @@ export function ComparisonTable({ rows }: { rows: ComparisonRow[] }) {
             <td className="px-3 py-3 text-right font-mono">{row.a.toFixed(row.decimals)}</td>
             <td className="px-3 py-3 text-right font-mono">{row.b.toFixed(row.decimals)}</td>
             <td className={clsx("py-3 pl-3 text-right font-mono", VERDICT_CLASS[row.verdict])}>
-              {signed(row.diff, row.decimals)} <span className="text-xs text-muted">{row.unit}</span>
+              {signed(row.a, row.b, row.decimals)} <span className="text-xs text-muted">{row.unit}</span>
               <span className="sr-only"> ({row.verdict === "same" ? "about the same" : `${row.verdict} in B`})</span>
             </td>
           </tr>
