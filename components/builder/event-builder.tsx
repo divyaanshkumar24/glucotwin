@@ -13,10 +13,12 @@ type EventBuilderProps = {
   highlightedEventId?: string | null;
   /** Hide the preset buttons (the compare page has its own presets). */
   hidePresets?: boolean;
+  /** Shorter food list and no explanatory text, for places that hold two builders. */
+  compact?: boolean;
 };
 
 /** Everything needed to edit one day: presets, add forms and the list of events. */
-export function EventBuilder({ events, onChange, onMetformin, highlightedEventId, hidePresets }: EventBuilderProps) {
+export function EventBuilder({ events, onChange, onMetformin, highlightedEventId, hidePresets, compact }: EventBuilderProps) {
   return (
     <div className="space-y-8">
       {!hidePresets && (
@@ -42,7 +44,7 @@ export function EventBuilder({ events, onChange, onMetformin, highlightedEventId
           </div>
         </section>
       )}
-      <AddEventForm events={events} onChange={onChange} />
+      <AddEventForm events={events} onChange={onChange} compact={compact} />
       <EventList events={events} onChange={onChange} highlightedEventId={highlightedEventId} />
     </div>
   );

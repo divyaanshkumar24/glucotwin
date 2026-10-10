@@ -30,10 +30,11 @@ const KINDS: { kind: Kind; label: string }[] = [
 type AddEventFormProps = {
   events: Event[];
   onChange: (events: Event[]) => void;
+  compact?: boolean;
 };
 
 /** Three small forms behind tabs: add a food to a meal, a walk, or a metformin dose. */
-export function AddEventForm({ events, onChange }: AddEventFormProps) {
+export function AddEventForm({ events, onChange, compact }: AddEventFormProps) {
   const [kind, setKind] = useState<Kind>("meal");
   const [minute, setMinute] = useState(13 * 60);
   const [food, setFood] = useState<Food | null>(null);
@@ -95,7 +96,7 @@ export function AddEventForm({ events, onChange }: AddEventFormProps) {
 
         {kind === "meal" && (
           <>
-            <FoodPicker selected={food} onSelect={setFood} />
+            <FoodPicker selected={food} onSelect={setFood} compact={compact} />
             {food && (
               <div className="flex items-center gap-3">
                 <Stepper label="portions" value={portions} onChange={setPortions} />
@@ -104,7 +105,7 @@ export function AddEventForm({ events, onChange }: AddEventFormProps) {
                 </span>
               </div>
             )}
-            {mealAtTime && (
+            {mealAtTime && !compact && (
               <p className="text-xs text-muted">
                 {mealName(minute)} at <span className="font-mono">{formatClock(minute)}</span> has{" "}
                 <span className="font-mono">{mealAtTime.carbsG}</span> g carbs so far. Foods added at the same time
@@ -114,7 +115,7 @@ export function AddEventForm({ events, onChange }: AddEventFormProps) {
           </>
         )}
 
-        {kind === "med" && (
+        {kind === "med" && !compact && (
           <p className="text-xs text-muted">
             Metformin lowers how much glucose the liver releases, building up over about 2 hours and lasting around
             10.
