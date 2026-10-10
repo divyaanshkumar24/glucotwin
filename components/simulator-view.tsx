@@ -7,6 +7,7 @@ import { GlucoseChart } from "@/components/glucose-chart";
 import { InsightsPanel } from "@/components/insights-panel";
 import { MetricsRow } from "@/components/metrics-row";
 import { SafetyNotice } from "@/components/safety-notice";
+import { LoadingLine } from "@/components/loading-line";
 import { TwinGate } from "@/components/twin-gate";
 import { useDayEvents } from "@/lib/day-store";
 import { analyzeDay, simulate } from "@/lib/engine";
@@ -32,7 +33,7 @@ function SimulatorView({ twin }: { twin: StoredTwin }) {
     [twin.params, twin.profile, events, result],
   );
 
-  if (!events || !result || !report) return null;
+  if (!events || !result || !report) return <LoadingLine />;
 
   function highlight(eventId: string | null) {
     setHighlightedEventId(eventId);

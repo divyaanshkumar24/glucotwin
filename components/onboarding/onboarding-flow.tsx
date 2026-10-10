@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { LoadingLine } from "@/components/loading-line";
 import { Button } from "@/components/ui/button";
 import {
   EMPTY_DRAFT,
@@ -28,7 +29,7 @@ type StepIndex = 0 | 1 | 2;
 /** Waits until saved data has been read, so an existing twin can prefill the form. */
 export function OnboardingFlow() {
   const [stored, save] = useStoredTwin();
-  if (stored === undefined) return null;
+  if (stored === undefined) return <LoadingLine />;
   return <Flow existing={stored} save={save} />;
 }
 

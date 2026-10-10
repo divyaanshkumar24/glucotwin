@@ -8,6 +8,7 @@ import { HowCalibrationWorks } from "@/components/calibrate/how-calibration-work
 import { ReadingsTable } from "@/components/calibrate/readings-table";
 import { StepSection } from "@/components/calibrate/step-section";
 import { useCurveTween } from "@/components/calibrate/use-curve-tween";
+import { LoadingLine } from "@/components/loading-line";
 import { TwinGate } from "@/components/twin-gate";
 import { Button } from "@/components/ui/button";
 import { useDayEvents } from "@/lib/day-store";
@@ -61,7 +62,7 @@ function CalibrateView({ twin }: { twin: StoredTwin }) {
   );
   const animatedAfter = useCurveTween(before ?? [], afterSeries);
 
-  if (!events || !before) return null;
+  if (!events || !before) return <LoadingLine />;
 
   function runCalibration() {
     const found = checkReadings(rows);

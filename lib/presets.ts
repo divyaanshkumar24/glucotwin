@@ -116,3 +116,5 @@ export const DAY_PRESETS: DayPreset[] = [
 export function typicalDay(onMetformin: boolean): Event[] {
   return DAY_PRESETS[0].build(onMetformin);
 }
+
+export { meal as presetMeal, walk as presetWalk };

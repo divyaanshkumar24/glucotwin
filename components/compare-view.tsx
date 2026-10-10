@@ -5,6 +5,7 @@ import { EventBuilder } from "@/components/builder/event-builder";
 import { CompareChart } from "@/components/compare-chart";
 import { ComparisonTable } from "@/components/comparison-table";
 import { SafetyNotice } from "@/components/safety-notice";
+import { LoadingLine } from "@/components/loading-line";
 import { TwinGate } from "@/components/twin-gate";
 import { Button } from "@/components/ui/button";
 import { COMPARE_PRESETS } from "@/lib/compare-presets";
@@ -31,7 +32,7 @@ function CompareView({ twin }: { twin: StoredTwin }) {
     [twin.params, scenarios],
   );
 
-  if (!scenarios || !results) return null;
+  if (!scenarios || !results) return <LoadingLine />;
 
   return (
     <div className="space-y-10">

@@ -18,8 +18,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
+        <a
+          href="#main"
+          className="sr-only rounded-md bg-surface px-3 py-2 text-sm focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-10"
+        >
+          Skip to content
+        </a>
         <SiteHeader />
-        <main className="mx-auto w-full max-w-[1120px] flex-1 px-4 py-10 sm:px-6">
+        <main id="main" className="mx-auto w-full max-w-[1120px] flex-1 px-4 py-10 sm:px-6">
           {children}
         </main>
         <SiteFooter />

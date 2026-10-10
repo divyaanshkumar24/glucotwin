@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { LoadingLine } from "@/components/loading-line";
 import { TwinPanel } from "@/components/twin-panel";
 import { ButtonLink } from "@/components/ui/button";
 import { useStoredTwin, type StoredTwin } from "@/lib/twin-store";
@@ -12,7 +13,7 @@ import { useStoredTwin, type StoredTwin } from "@/lib/twin-store";
 export function TwinGate({ children }: { children: (twin: StoredTwin) => ReactNode }) {
   const [twin] = useStoredTwin();
 
-  if (twin === undefined) return <p className="text-sm text-muted">Loading your twin...</p>;
+  if (twin === undefined) return <LoadingLine />;
   if (twin === null) {
     return (
       <section className="max-w-xl rounded-md border border-border bg-surface p-6">

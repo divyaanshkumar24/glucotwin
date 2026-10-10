@@ -38,6 +38,26 @@ body {
   color: var(--text);
 }
 
+/* Every control gets the same clear focus ring when reached by keyboard. */
+:where(a, button, select, input, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Text fields draw their own ring on the wrapper, so the bare input stays quiet. */
+input:where([class*="outline-none"]):focus-visible {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
 /* Numbers always use tabular figures so columns of values line up. */
 .font-mono {
   font-variant-numeric: tabular-nums;

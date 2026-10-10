@@ -77,3 +77,13 @@ describe("nearest item", () => {
     expect(nearestItem(groupEvents(addWalk([], 100, 15)), 900)).toBeNull();
   });
 });
+
+describe("landing demo", () => {
+  it("shows a lower evening peak for roti and a walk than for rice", async () => {
+    const { buildLandingDemo } = await import("../landing-demo");
+    const demo = buildLandingDemo();
+    expect(demo.roti.peak).toBeLessThan(demo.rice.peak);
+    expect(demo.data[0].minute).toBe(18 * 60);
+    expect(demo.data.at(-1)?.minute).toBe(1440);
+  });
+});

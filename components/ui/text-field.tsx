@@ -30,7 +30,7 @@ export function TextField({ label, value, onChange, unit, helper, error, inputMo
       <div
         className={clsx(
           hideLabel ? "mt-0" : "mt-2",
-          "flex h-10 items-center rounded-md border bg-surface transition-colors duration-150 ease-out focus-within:border-accent",
+          "flex h-10 items-center rounded-md border bg-surface transition-colors duration-150 ease-out focus-within:border-accent focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-accent",
           error ? "border-low" : "border-border",
         )}
       >
