@@ -3,16 +3,16 @@
 import type { ReactNode } from "react";
 import { TwinPanel } from "@/components/twin-panel";
 import { ButtonLink } from "@/components/ui/button";
-import { useStoredTwin } from "@/lib/twin-store";
+import { useStoredTwin, type StoredTwin } from "@/lib/twin-store";
 
 /**
  * Shows the twin panel and the page content once a twin exists, or a calm prompt to
- * create one. Renders nothing until the browser's storage has been read.
+ * create one. Shows a short loading line until the browser's storage has been read.
  */
-export function TwinGate({ children }: { children: ReactNode }) {
+export function TwinGate({ children }: { children: (twin: StoredTwin) => ReactNode }) {
   const [twin] = useStoredTwin();
 
-  if (twin === undefined) return null;
+  if (twin === undefined) return <p className="text-sm text-muted">Loading your twin...</p>;
   if (twin === null) {
     return (
       <section className="max-w-xl rounded-md border border-border bg-surface p-6">
@@ -31,7 +31,7 @@ export function TwinGate({ children }: { children: ReactNode }) {
   return (
     <div className="space-y-8">
       <TwinPanel twin={twin} />
-      {children}
+      {children(twin)}
     </div>
   );
 }

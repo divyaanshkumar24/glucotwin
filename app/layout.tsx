@@ -6,7 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GlucoTwin",
+  title: { default: "GlucoTwin", template: "%s · GlucoTwin" },
   description:
     "A personal glucose digital twin for exploring how meals, walks and medication affect blood sugar.",
 };

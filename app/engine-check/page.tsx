@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { EngineCheckChart } from "@/components/engine-check-chart";
 import { PageHeading } from "@/components/page-heading";
 
-export const metadata: Metadata = { title: "Engine check · GlucoTwin" };
+export const metadata: Metadata = { title: "Engine check" };
 
 // Development aid only: the production build renders a 404 here.
 export default function EngineCheckPage() {
