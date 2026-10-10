@@ -8,8 +8,16 @@ export {
   DEFAULTS,
   type SensitivityLevel,
 } from "./personalize";
-export { mealRa, totalRa, tmaxForGi } from "./meals";
+export { mealRa, totalRa, tmaxForGi, mealLabel } from "./meals";
 export { walkBoost, metforminFactor, WALK, METFORMIN } from "./modifiers";
 export { simulate, simulateSeries, computeMetrics, MINUTES_PER_DAY } from "./model";
 export { calibrate } from "./calibrate";
 export { compareMetrics, summarizeComparison, type ComparisonRow, type Verdict } from "./compare";
+export {
+  analyzeDay,
+  safetyReason,
+  SAFETY_MESSAGE,
+  type Insight,
+  type InsightReport,
+  type Severity,
+} from "./insights";

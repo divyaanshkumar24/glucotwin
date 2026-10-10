@@ -1,5 +1,5 @@
 import { FOODS, type Food } from "@/lib/data/foods";
-import type { Event, MealEvent, MedEvent, WalkEvent } from "@/lib/engine";
+import { mealLabel, type Event, type MealEvent, type MedEvent, type WalkEvent } from "@/lib/engine";
 
 /** Meal, walk and medication times are chosen in steps of this many minutes. */
 export const TIME_STEP_MIN = 15;
@@ -131,12 +131,7 @@ export function describeItem(item: DayItem): string {
 }
 
 /** Short label for the kind of meal, from the time of day. */
-export function mealName(minute: number): string {
-  if (minute < 600) return "Breakfast";
-  if (minute < 900) return "Lunch";
-  if (minute < 1080) return "Snack";
-  return "Dinner";
-}
+export const mealName = mealLabel;
 
 /** Guard for data read back from localStorage. */
 export function isEventArray(value: unknown): value is Event[] {

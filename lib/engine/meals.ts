@@ -38,3 +38,11 @@ export function totalRa(minute: number, meals: MealEvent[]): number {
   for (const meal of meals) total += mealRa(minute, meal);
   return total;
 }
+
+/** Name of the meal for a time of day: before 10:00 breakfast, then lunch, snack, dinner. */
+export function mealLabel(minute: number): string {
+  if (minute < 600) return "Breakfast";
+  if (minute < 900) return "Lunch";
+  if (minute < 1080) return "Snack";
+  return "Dinner";
+}

@@ -70,7 +70,7 @@ export function FoodPicker({ selected, onSelect, compact }: FoodPickerProps) {
         placeholder="Search, e.g. roti or dal"
         className="mt-1.5 h-9 w-full rounded-md border border-border bg-surface px-3 text-sm transition-colors duration-150 ease-out placeholder:text-muted focus-visible:border-accent"
       />
-      <div className={clsx("mt-2 overflow-y-auto", compact ? "max-h-40" : "max-h-56", "rounded-md border border-border bg-surface")} tabIndex={-1}>
+      <div className={clsx("mt-2 overflow-y-auto", compact ? "max-h-40" : "max-h-44", "rounded-md border border-border bg-surface")} tabIndex={-1}>
         {groups.length === 0 && <p className="px-3 py-3 text-sm text-muted">No food matches “{query}”.</p>}
         {groups.map((group) => (
           <section key={group.category} aria-label={capitalise(group.category)}>

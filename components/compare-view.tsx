@@ -4,6 +4,7 @@ import { useMemo, type ReactNode } from "react";
 import { EventBuilder } from "@/components/builder/event-builder";
 import { CompareChart } from "@/components/compare-chart";
 import { ComparisonTable } from "@/components/comparison-table";
+import { SafetyNotice } from "@/components/safety-notice";
 import { TwinGate } from "@/components/twin-gate";
 import { Button } from "@/components/ui/button";
 import { COMPARE_PRESETS } from "@/lib/compare-presets";
@@ -52,6 +53,8 @@ function CompareView({ twin }: { twin: StoredTwin }) {
           ))}
         </div>
       </section>
+
+      <SafetyNotice metrics={[results.a.metrics, results.b.metrics]} />
 
       <section aria-labelledby="result-heading" className="space-y-6">
         <h2 id="result-heading" className="text-sm font-semibold tracking-tight">
