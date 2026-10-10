@@ -2,7 +2,7 @@
 
 GlucoTwin builds a personal "digital twin" of a Type 2 diabetes patient's glucose-insulin system, using the Bergman minimal model from diabetes research. You enter your age, weight, activity and latest HbA1c, then try meals, walks and metformin on a simulated day and watch your glucose respond. You can calibrate the twin to real glucometer readings, and it explains what it sees in plain language. It is a browser-only app: no backend, no accounts, no API keys, and everything you enter stays in your browser's localStorage.
 
-**Live demo:** _link to be added after deployment (see [Deployment](#deployment))_
+**Live demo:** [glucotwin.vercel.app](https://glucotwin.vercel.app)
 
 **Screenshots**
 
@@ -118,7 +118,7 @@ Saved data lives under the keys `glucotwin.twin.v1`, `glucotwin.day.v1` and `glu
 
 ## Deployment
 
-The app is a static export, so it needs no server settings. Import the GitHub repository at [vercel.com/new](https://vercel.com/new) and accept the defaults (framework: Next.js), or run `npx vercel` from the project folder. After the first deploy, put the production URL at the top of this file.
+The app is deployed on Vercel at [glucotwin.vercel.app](https://glucotwin.vercel.app). It is a static export, so it needs no server settings: import the GitHub repository at [vercel.com/new](https://vercel.com/new) and accept the defaults (framework: Next.js), or run `npx vercel` from the project folder.
 
 ## Limitations and honest scope
 
