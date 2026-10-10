@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "export:pdf": "node scripts/export-code-pdf.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -25,6 +26,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.7",
+    "pdfkit": "^0.20.2",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^3.2.7"
