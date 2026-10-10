@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { Tag } from "@/components/ui/tag";
 import { createTwin, simulate, type Scenario } from "@/lib/engine";
 
 const twin = createTwin({
@@ -55,9 +56,7 @@ export function EngineCheckChart() {
       <div className="rounded-md border border-border bg-surface p-4">
         <div className="mb-4 flex items-center gap-2 text-sm">
           <span className="font-medium">HbA1c 8 %, 80 kg</span>
-          <span className="rounded-sm border border-border px-1.5 py-0.5 text-xs text-muted">
-            Demo
-          </span>
+          <Tag label="Demo" />
         </div>
         <div className="h-72">
           <ResponsiveContainer width="100%" height="100%">

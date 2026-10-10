@@ -103,6 +103,26 @@ export function createTwin(profile: Profile): TwinParams {
   };
 }
 
+export type SensitivityLevel = "Low" | "Moderate" | "Good";
+
+/** Below these fractions of a healthy adult's insulin sensitivity we call it low / moderate. */
+const SENSITIVITY_BANDS = { low: 0.6, moderate: 0.85 };
+
+/**
+ * Insulin sensitivity as a fraction of a healthy adult's (1 = typical healthy value).
+ * Includes the calibration multiplier, so it reflects what the twin has learned.
+ */
+export function insulinSensitivityIndex(params: TwinParams): number {
+  return (params.p3 * params.siMultiplier) / DEFAULTS.p3;
+}
+
+/** Plain-language band for the sensitivity index. */
+export function sensitivityLevel(index: number): SensitivityLevel {
+  if (index < SENSITIVITY_BANDS.low) return "Low";
+  if (index < SENSITIVITY_BANDS.moderate) return "Moderate";
+  return "Good";
+}
+
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }
